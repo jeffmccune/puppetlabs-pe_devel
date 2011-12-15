@@ -1,0 +1,19 @@
+# Managed by Puppet <%= puppetversion %>
+# This file provides YUM access to Puppet Enterprise
+[pe_base]
+name=Puppet Enterprise Base
+baseurl=<%= scope.lookupvar('pe_devel::puppetenterprise_baseurl_real') %>/yum/2.0.0/base/el<%= lsbmajdistrelease %>/$basearch
+gpgcheck=0
+enabled=1
+
+[pe_updates]
+name=Puppet Enterprise Updates
+baseurl=<%= scope.lookupvar('pe_devel::puppetenterprise_baseurl_real') %>/yum/2.0.0/updates/el<%= lsbmajdistrelease %>/$basearch
+gpgcheck=0
+enabled=0
+
+[pe_extras]
+name=Puppet Enterprise Extras
+baseurl=<%= scope.lookupvar('pe_devel::puppetenterprise_baseurl_real') %>/yum/2.0.0/extras/el<%= lsbmajdistrelease %>/$basearch
+gpgcheck=0
+enabled=0

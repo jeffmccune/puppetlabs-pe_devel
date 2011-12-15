@@ -1,18 +1,19 @@
 require 'rake'
+require 'rake/clean'
+require 'rubygems'
+require 'rspec'
+require 'rspec/core/rake_task'
+
+CLEAN.include('pkg/*')
 
 task :default => [:spec]
 
-desc "Run all module spec tests (Requires rspec-puppet gem)"
-task :spec do
-  system("rspec --format d spec")
+RSpec::Core::RakeTask.new do |t|
+  t.pattern = 'spec/**/*_spec.rb'
+  t.fail_on_error = true
 end
 
 desc "Build package"
 task :build do
-  system("puppet-module build")
-end
-
-desc "Clean packages"
-task :clean do
-  system("rm -rf pkg/*")
+  sh "puppet-module build"
 end
